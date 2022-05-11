@@ -23,7 +23,7 @@ namespace SchoolManagement.DAO
             try
             {
                 conn.Open();
-                string SQL = string.Format("insert into Teacher(IdTeacher, NameTeacher, GenderTeacher, BirthdayTeacher, SubjectOfTeacher, PhoneTeacher, SalaryTeacher, AddressTeacher) values ('{0}', N'{1}', N'{2}', '{3}', N'{4}', '{5}','{6}', N'{7}')", tea.TeacherID, tea.TeacherName, tea.TeacherGender, tea.TeacherBirthday, tea.Subject, tea.PhoneNum ,tea.Salary, tea.TeacherAddress);
+                string SQL = string.Format("insert into Teacher(IdTeacher, NameTeacher, GenderTeacher, BirthdayTeacher, IdSubjects, PhoneTeacher, SalaryTeacher, AddressTeacher) values ('{0}', N'{1}', N'{2}', '{3}', '{4}', '{5}','{6}', N'{7}')", tea.TeacherID, tea.TeacherName, tea.TeacherGender, tea.TeacherBirthday, tea.Subject, tea.PhoneNum ,tea.Salary, tea.TeacherAddress);
                 SqlCommand cmd = new SqlCommand(SQL, conn);
                 if (cmd.ExecuteNonQuery() > 0)
                     return true;
@@ -75,10 +75,9 @@ namespace SchoolManagement.DAO
             }
             return false;
         }
-
-        public DataTable SearchStudent(string searchType, string value)
+        public DataTable SearchTeacher(string searchType, string value)
         {
-            string SQL = string.Format("select * from Student where '{0}' like '{1}'", searchType, value);
+            string SQL = string.Format("select * from Teacher where {0} like '{1}'", searchType, value);
             SqlCommand cmd = new SqlCommand(SQL, conn);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataTable table = new DataTable();

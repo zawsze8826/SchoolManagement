@@ -78,7 +78,7 @@ namespace SchoolManagement.DAO
 
         public DataTable SearchStudent(string searchType, string value)
         {
-            string SQL = string.Format("select * from Student where '{0}' like '{1}'", searchType, value);
+            string SQL = "Select * From Student where " + searchType +"='" + value +"'";
             SqlCommand cmd = new SqlCommand(SQL, conn);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataTable table = new DataTable();

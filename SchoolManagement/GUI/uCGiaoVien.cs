@@ -62,5 +62,14 @@ namespace SchoolManagement.GUI
             busTeacher.DeleteTeacher(tea);
             dGV.DataSource = busTeacher.LoadData();
         }
+
+        private void btnTimKiem_Click(object sender, EventArgs e)
+        {
+            string searchType;
+            if (cboSearchType.Text == "Mã Giáo Viên") searchType = "IdTeacher";
+            else if (cboSearchType.Text == "Tên") searchType = "NameTeacher";
+            else searchType = "PhoneTeacher";
+            dGV.DataSource = busTeacher.SearchTeacher(searchType, txtTimKiem.Text);
+        }
     }
 }

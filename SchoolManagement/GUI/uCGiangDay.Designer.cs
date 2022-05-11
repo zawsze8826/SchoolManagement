@@ -35,15 +35,15 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.txtTiet = new System.Windows.Forms.TextBox();
             this.dataSet = new System.Data.DataSet();
             this.cboThu = new System.Windows.Forms.ComboBox();
             this.btnDelete = new System.Windows.Forms.Button();
             this.cboLop = new System.Windows.Forms.ComboBox();
             this.pnInput = new System.Windows.Forms.Panel();
+            this.cboTiet = new System.Windows.Forms.ComboBox();
             this.cboGiaoVien = new System.Windows.Forms.ComboBox();
             this.pnDisplay = new System.Windows.Forms.Panel();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dGV = new System.Windows.Forms.DataGridView();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -55,7 +55,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataSet)).BeginInit();
             this.pnInput.SuspendLayout();
             this.pnDisplay.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dGV)).BeginInit();
             this.SuspendLayout();
             // 
             // btnUpdate
@@ -123,13 +123,6 @@
             this.label6.TabIndex = 3;
             this.label6.Text = "Giáo Viên:";
             // 
-            // txtTiet
-            // 
-            this.txtTiet.Location = new System.Drawing.Point(103, 328);
-            this.txtTiet.Name = "txtTiet";
-            this.txtTiet.Size = new System.Drawing.Size(138, 20);
-            this.txtTiet.TabIndex = 2;
-            // 
             // dataSet
             // 
             this.dataSet.DataSetName = "DatasetQL";
@@ -137,7 +130,14 @@
             // cboThu
             // 
             this.cboThu.FormattingEnabled = true;
-            this.cboThu.Location = new System.Drawing.Point(103, 252);
+            this.cboThu.Items.AddRange(new object[] {
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"});
+            this.cboThu.Location = new System.Drawing.Point(103, 249);
             this.cboThu.Name = "cboThu";
             this.cboThu.Size = new System.Drawing.Size(138, 21);
             this.cboThu.TabIndex = 6;
@@ -154,13 +154,14 @@
             // cboLop
             // 
             this.cboLop.FormattingEnabled = true;
-            this.cboLop.Location = new System.Drawing.Point(103, 169);
+            this.cboLop.Location = new System.Drawing.Point(103, 170);
             this.cboLop.Name = "cboLop";
             this.cboLop.Size = new System.Drawing.Size(138, 21);
             this.cboLop.TabIndex = 1;
             // 
             // pnInput
             // 
+            this.pnInput.Controls.Add(this.cboTiet);
             this.pnInput.Controls.Add(this.cboThu);
             this.pnInput.Controls.Add(this.btnDelete);
             this.pnInput.Controls.Add(this.btnUpdate);
@@ -170,7 +171,6 @@
             this.pnInput.Controls.Add(this.label8);
             this.pnInput.Controls.Add(this.label7);
             this.pnInput.Controls.Add(this.label6);
-            this.pnInput.Controls.Add(this.txtTiet);
             this.pnInput.Controls.Add(this.cboLop);
             this.pnInput.Controls.Add(this.cboGiaoVien);
             this.pnInput.Dock = System.Windows.Forms.DockStyle.Left;
@@ -179,17 +179,51 @@
             this.pnInput.Size = new System.Drawing.Size(277, 511);
             this.pnInput.TabIndex = 8;
             // 
+            // cboTiet
+            // 
+            this.cboTiet.AutoCompleteCustomSource.AddRange(new string[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12"});
+            this.cboTiet.FormattingEnabled = true;
+            this.cboTiet.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12"});
+            this.cboTiet.Location = new System.Drawing.Point(103, 328);
+            this.cboTiet.Name = "cboTiet";
+            this.cboTiet.Size = new System.Drawing.Size(138, 21);
+            this.cboTiet.TabIndex = 7;
+            // 
             // cboGiaoVien
             // 
             this.cboGiaoVien.FormattingEnabled = true;
-            this.cboGiaoVien.Location = new System.Drawing.Point(103, 89);
+            this.cboGiaoVien.Location = new System.Drawing.Point(103, 91);
             this.cboGiaoVien.Name = "cboGiaoVien";
             this.cboGiaoVien.Size = new System.Drawing.Size(138, 21);
             this.cboGiaoVien.TabIndex = 0;
             // 
             // pnDisplay
             // 
-            this.pnDisplay.Controls.Add(this.dataGridView1);
+            this.pnDisplay.Controls.Add(this.dGV);
             this.pnDisplay.Controls.Add(this.label4);
             this.pnDisplay.Controls.Add(this.label3);
             this.pnDisplay.Controls.Add(this.label2);
@@ -204,14 +238,15 @@
             this.pnDisplay.Size = new System.Drawing.Size(742, 511);
             this.pnDisplay.TabIndex = 9;
             // 
-            // dataGridView1
+            // dGV
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(4, 78);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(724, 419);
-            this.dataGridView1.TabIndex = 6;
+            this.dGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dGV.Location = new System.Drawing.Point(4, 78);
+            this.dGV.Name = "dGV";
+            this.dGV.RowHeadersWidth = 51;
+            this.dGV.Size = new System.Drawing.Size(724, 419);
+            this.dGV.TabIndex = 6;
+            this.dGV.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGV_CellContentClick);
             // 
             // label4
             // 
@@ -261,10 +296,18 @@
             // cboXemTheoThu
             // 
             this.cboXemTheoThu.FormattingEnabled = true;
+            this.cboXemTheoThu.Items.AddRange(new object[] {
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"});
             this.cboXemTheoThu.Location = new System.Drawing.Point(508, 46);
             this.cboXemTheoThu.Name = "cboXemTheoThu";
             this.cboXemTheoThu.Size = new System.Drawing.Size(101, 21);
             this.cboXemTheoThu.TabIndex = 3;
+            this.cboXemTheoThu.SelectedIndexChanged += new System.EventHandler(this.cboXemTheoThu_SelectedIndexChanged);
             // 
             // cboXemGiaoVien
             // 
@@ -273,6 +316,7 @@
             this.cboXemGiaoVien.Name = "cboXemGiaoVien";
             this.cboXemGiaoVien.Size = new System.Drawing.Size(110, 21);
             this.cboXemGiaoVien.TabIndex = 2;
+            this.cboXemGiaoVien.SelectedIndexChanged += new System.EventHandler(this.cboXemGiaoVien_SelectedIndexChanged);
             // 
             // cboXemLop
             // 
@@ -281,6 +325,7 @@
             this.cboXemLop.Name = "cboXemLop";
             this.cboXemLop.Size = new System.Drawing.Size(103, 21);
             this.cboXemLop.TabIndex = 1;
+            this.cboXemLop.SelectedIndexChanged += new System.EventHandler(this.cboXemLop_SelectedIndexChanged);
             // 
             // uCGiangDay
             // 
@@ -295,7 +340,7 @@
             this.pnInput.PerformLayout();
             this.pnDisplay.ResumeLayout(false);
             this.pnDisplay.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dGV)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -309,7 +354,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox txtTiet;
         private System.Data.DataSet dataSet;
         private System.Windows.Forms.ComboBox cboThu;
         private System.Windows.Forms.Button btnDelete;
@@ -325,6 +369,7 @@
         private System.Windows.Forms.ComboBox cboXemTheoThu;
         private System.Windows.Forms.ComboBox cboXemGiaoVien;
         private System.Windows.Forms.ComboBox cboXemLop;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dGV;
+        private System.Windows.Forms.ComboBox cboTiet;
     }
 }

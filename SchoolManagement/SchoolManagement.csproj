@@ -61,12 +61,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BUS\giangDayBUS.cs" />
     <Compile Include="BUS\giaoVienBUS.cs" />
     <Compile Include="BUS\hocSinhBUS.cs" />
+    <Compile Include="BUS\thoiKhoaBieuBUS.cs" />
     <Compile Include="DAO\DBConnect.cs" />
+    <Compile Include="DAO\giangDayDAO.cs" />
     <Compile Include="DAO\giaoVienDAO.cs" />
     <Compile Include="DAO\hocSinhDAO.cs" />
-    <Compile Include="DTO\giangDayDTO.cs" />
+    <Compile Include="DAO\thoiKhoaBieuDAO.cs" />
     <Compile Include="DTO\giaoVienDTO.cs" />
     <Compile Include="DTO\hocSinhDTO.cs" />
     <Compile Include="DTO\taiKhoanDTO.cs" />

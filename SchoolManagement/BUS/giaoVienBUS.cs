@@ -28,9 +28,9 @@ namespace SchoolManagement.BUS
         {
             return daoTeacher.DeleteTeacher(tea);
         }
-        //public DataTable SearchStudent(string searchType, string value)
-        //{
-        //    return daoStudent.SearchStudent(searchType, value);
-        //    daoTeacher
+        public DataTable SearchTeacher(string searchType, string value)
+        {
+            return daoTeacher.SearchTeacher(searchType, value);
+        }
     }
 }
