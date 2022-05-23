@@ -13,7 +13,7 @@ namespace SchoolManagement.DAO
     {
         public DataTable LoadData()
         {
-            SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Student", conn);
+            SqlDataAdapter adapter = new SqlDataAdapter("SELECT Student.IdStudent, Student.NameStudent, Student.GenderStudent, Student.BirthdayStudent, Student.Class, Student.FolkStudent, Student.AddressStudent FROM Student, TimeTable where Student.Class = TimeTable.Class", conn);
             DataTable table = new DataTable();
             adapter.Fill(table);
             return table;
@@ -23,7 +23,7 @@ namespace SchoolManagement.DAO
             try
             {
                 conn.Open();
-                string SQL = string.Format("insert into Student(IdStudent, NameStudent, GenderStudent, BirthdayStudent, Class, FolkStudent, AddressStudent) values ('{0}', N'{1}', N'{2}', '{3}', '{4}', '{5}', N'{6}')", stu.StudentID, stu.StudentName,stu.StudentGender, stu.StudentBirthDay,stu.Clas, stu.Folk, stu.StudentAddress);
+                string SQL = string.Format("insert into Student(NameStudent, GenderStudent, BirthdayStudent, Class, FolkStudent, AddressStudent) values (N'{0}', N'{1}', '{2}', '{3}', '{4}', N'{5}')",stu.StudentName,stu.StudentGender, stu.StudentBirthDay,stu.Clas, stu.Folk, stu.StudentAddress);
                 SqlCommand cmd = new SqlCommand(SQL, conn);
                 if (cmd.ExecuteNonQuery() > 0)
                     return true;
@@ -42,7 +42,7 @@ namespace SchoolManagement.DAO
             try
             {
                 conn.Open();
-                string SQL = string.Format("update Student set NameStudent = N'{0}',GenderStudent = N'{1}',BirthdayStudent = '{2}', Class = '{3}', FolkStudent= '{4}', AddressStudent = N'{5}' where IdStudent = '{6}'", stu.StudentName, stu.StudentGender, stu.StudentBirthDay, stu.Clas, stu.Folk, stu.StudentAddress, stu.StudentID);
+                string SQL = string.Format("update Student set NameStudent = N'{0}',GenderStudent = N'{1}',BirthdayStudent = '{2}', CLass = '{3}', FolkStudent= N'{4}', AddressStudent = N'{5}' where IdStudent = '{6}'", stu.StudentName, stu.StudentGender, stu.StudentBirthDay, stu.Clas, stu.Folk, stu.StudentAddress, stu.StudentID);
                 SqlCommand cmd = new SqlCommand(SQL, conn);
                 if (cmd.ExecuteNonQuery() > 0)
                     return true;
@@ -78,7 +78,7 @@ namespace SchoolManagement.DAO
 
         public DataTable SearchStudent(string searchType, string value)
         {
-            string SQL = "Select * From Student where " + searchType +"='" + value +"'";
+            string SQL = "SELECT Student.IdStudent, Student.NameStudent, Student.GenderStudent, Student.BirthdayStudent, Student.Class, TimeTable.Class, Student.FolkStudent, Student.AddressStudent FROM Student, TimeTable where Student.Class = TimeTable.Class and "+ searchType+"='"+ value +"'";
             SqlCommand cmd = new SqlCommand(SQL, conn);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataTable table = new DataTable();

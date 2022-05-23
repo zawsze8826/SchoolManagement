@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using SchoolManagement.BUS;
+using SchoolManagement.DTO;
 
 namespace SchoolManagement.GUI
 {
@@ -22,44 +23,10 @@ namespace SchoolManagement.GUI
 
             dGV.DataSource = dataView;
 
-            DataView dvGiaoVien = new DataView(busGiangDay.LoadDataGiaoVien());
-            //public DataView dvThu = new DataView();
-            //public DataView dvXGiaoVien = new DataView();
-            //public DataView dvXLop = new DataView();
-            //public DataView dvXThu = new DataView();
-            cboGiaoVien.DataSource = dvGiaoVien;
-            cboGiaoVien.DisplayMember = "NameTeacher";
-            cboGiaoVien.ValueMember = "IdTeacher";
-
-
-            DataView dvLop = new DataView(busGiangDay.LoadDataLop());
-            cboLop.DataSource = dvLop;
-            cboLop.DisplayMember = "Class";
-            cboLop.ValueMember = "CLass";
-
-            cboThu.Text = "Monday";
-
-            cboTiet.Text = "1";
-
-            cboXemLop.DataSource = dvLop;
+            DataView dvXemLop = new DataView(busGiangDay.LoadDataLop());
+            cboXemLop.DataSource = dvXemLop;
             cboXemLop.DisplayMember = "Class";
             cboXemLop.ValueMember = "Class";
-
-            cboXemGiaoVien.DataSource = dvGiaoVien;
-            cboXemGiaoVien.DisplayMember = "NameTeacher";
-            cboXemGiaoVien.ValueMember = "IdTeacher";
-
-        }
-
-        private void dGV_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            int i;
-            i = dGV.CurrentRow.Index;
-            cboGiaoVien.Text = dGV.Rows[i].Cells[1].Value.ToString();
-            cboLop.Text = dGV.Rows[i].Cells[2].Value.ToString();
-            cboThu.Text = dGV.Rows[i].Cells[5].Value.ToString();
-            cboTiet.Text = dGV.Rows[i].Cells[6].Value.ToString();
-
         }
 
         private void cboXemLop_SelectedIndexChanged(object sender, EventArgs e)
@@ -67,15 +34,20 @@ namespace SchoolManagement.GUI
             dGV.DataSource = busGiangDay.LoadDataXemLop(Convert.ToString(cboXemLop.SelectedValue));
         }
 
-        private void cboXemGiaoVien_SelectedIndexChanged(object sender, EventArgs e)
+        private void dGV_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            dGV.DataSource = busGiangDay.LoadDataXemGiaoVien(Convert.ToString(cboXemGiaoVien.SelectedValue));
+            if(e.RowIndex == -1)
+            {
+                return;
+            }
+
+            DataGridViewRow row = dGV.Rows[e.RowIndex];
+            txtId.Text = row.Cells[0].Value.ToString();
+            txtGiaoVien.Text = row.Cells[2].Value.ToString();
+            txtLop.Text = row.Cells[3].Value.ToString();
+            txtThu.Text = row.Cells[6].Value.ToString();
+            txtTiet.Text = row.Cells[7].Value.ToString();
         }
 
-        private void cboXemTheoThu_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            dGV.DataSource = busGiangDay.LoadDataXemThu(Convert.ToString(cboXemTheoThu.SelectedValue));
-
-        }
     }
 }

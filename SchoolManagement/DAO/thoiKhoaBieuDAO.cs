@@ -12,7 +12,7 @@ namespace SchoolManagement.DAO
     {
         public DataTable LoadData()
         {
-            SqlCommand cmd = new SqlCommand("SELECT Teaching.IdClass,DATENAME(w,Teaching.DayToLearn) as Thu, Teaching.TimeToLearn, Teacher.NameTeacher, Subjects.NameSubjects from Teaching, Teacher, Subjects where Teacher.IdTeacher = Teaching.IdTeacher and Subjects.IdSubjects = Teacher.IdSubjects ", conn);
+            SqlCommand cmd = new SqlCommand("SELECT Teaching.Class,DATENAME(w,Teaching.DayToLearn) as Thu, Teaching.TimeToLearn, Teacher.IdTeacher ,Teacher.NameTeacher, Subjects.NameSubjects from Teaching, Teacher, Subjects where Teacher.IdTeacher = Teaching.IdTeacher and Subjects.IdSubjects = Teacher.IdSubjects ", conn);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataTable talbe = new DataTable();
             da.Fill(talbe);
@@ -21,7 +21,7 @@ namespace SchoolManagement.DAO
 
         public DataTable LoadClass()
         {
-            SqlCommand cmd = new SqlCommand("SELECT TimeTable.IdClass, TimeTable.Class from TimeTable", conn);
+            SqlCommand cmd = new SqlCommand("SELECT TimeTable.Class from TimeTable", conn);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataTable talbe = new DataTable();
             da.Fill(talbe);
@@ -30,8 +30,8 @@ namespace SchoolManagement.DAO
 
         public DataTable XemButton(string value)
         {
-            SqlCommand cmd = new SqlCommand("SELECT Teaching.IdClass,DATENAME(w,Teaching.DayToLearn) as Thu, Teaching.TimeToLearn, Teacher.NameTeacher, Subjects.NameSubjects from Teaching, Teacher, Subjects where Teacher.IdTeacher = Teaching.IdTeacher and Subjects.IdSubjects = Teacher.IdSubjects and Teaching.IdClass = '" + value +"'", conn);
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            string cmd = "SELECT Teaching.Class, DateName(w,Teaching.DayToLearn) as Thu, Teaching.TimeToLearn, Teaching.IdTeacher , Teacher.NameTeacher, Subjects.NameSubjects from Teaching, Teacher, Subjects, TimeTable Where Teacher.IdTeacher = Teaching.IdTeacher and Subjects.IdSubjects = Teacher.IdSubjects and TimeTable.Class = Teaching.Class and  TimeTable.Class = '" + value +"'";
+            SqlDataAdapter da = new SqlDataAdapter(cmd, conn);
             DataTable talbe = new DataTable();
             da.Fill(talbe);
             return talbe;

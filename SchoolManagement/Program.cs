@@ -16,8 +16,9 @@ namespace SchoolManagement
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new GUI.fLogin());
-            Application.Run(new GUI.frmMain());
+            Application.Run(new GUI.fLogin());
+            //Application.Run(new GUI.frmMain());
+            //Application.Run(new GUI.frmGVAcc());
         }
     }
 }

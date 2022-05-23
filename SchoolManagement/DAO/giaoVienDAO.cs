@@ -13,7 +13,7 @@ namespace SchoolManagement.DAO
     {
         public DataTable LoadData()
         {
-            SqlDataAdapter adapter = new SqlDataAdapter("SELECT * FROM Teacher", conn);
+            SqlDataAdapter adapter = new SqlDataAdapter("SELECT Teacher.IdTeacher, Teacher.NameTeacher, Teacher.GenderTeacher, Teacher.BirthdayTeacher, Teacher.IdSubjects, Subjects.NameSubjects, Teacher.PhoneTeacher, Teacher.SalaryTeacher, Teacher.AddressTeacher From Teacher, Subjects Where Teacher.IdSubjects = Subjects.IdSubjects", conn);
             DataTable table = new DataTable();
             adapter.Fill(table);
             return table;
@@ -23,7 +23,7 @@ namespace SchoolManagement.DAO
             try
             {
                 conn.Open();
-                string SQL = string.Format("insert into Teacher(IdTeacher, NameTeacher, GenderTeacher, BirthdayTeacher, IdSubjects, PhoneTeacher, SalaryTeacher, AddressTeacher) values ('{0}', N'{1}', N'{2}', '{3}', '{4}', '{5}','{6}', N'{7}')", tea.TeacherID, tea.TeacherName, tea.TeacherGender, tea.TeacherBirthday, tea.Subject, tea.PhoneNum ,tea.Salary, tea.TeacherAddress);
+                string SQL = string.Format("insert into Teacher(NameTeacher, GenderTeacher, BirthdayTeacher, IdSubjects, PhoneTeacher, SalaryTeacher, AddressTeacher) values ('N{0}', N'{1}', '{2}', '{3}', '{4}', '{5}' ,N'{6}')", tea.TeacherName, tea.TeacherGender, tea.TeacherBirthday, tea.IdSubject, tea.PhoneNum ,tea.Salary, tea.TeacherAddress);
                 SqlCommand cmd = new SqlCommand(SQL, conn);
                 if (cmd.ExecuteNonQuery() > 0)
                     return true;
@@ -42,7 +42,7 @@ namespace SchoolManagement.DAO
             try
             {
                 conn.Open();
-                string SQL = string.Format("update Teacher set NameTeacher = N'{0}',GenderTeacher = N'{1}',BirthdayTeaCher = '{2}', SubjectOfTeacher = N'{3}', PhoneTeacher= '{4}', SalaryTeacher = '{5}', AddressTeacher = N'{6}' where IdTeacher = '{7}'", tea.TeacherName, tea.TeacherGender, tea.TeacherBirthday, tea.Subject, tea.PhoneNum, tea.Salary, tea.TeacherAddress, tea.TeacherID);
+                string SQL = string.Format("update Teacher set NameTeacher = N'{0}',GenderTeacher = N'{1}',BirthdayTeaCher = '{2}', IdSubjects = '{3}', PhoneTeacher= '{4}', SalaryTeacher = '{5}', AddressTeacher = N'{6}' where IdTeacher = '{7}'", tea.TeacherName, tea.TeacherGender, tea.TeacherBirthday, tea.IdSubject, tea.PhoneNum, tea.Salary, tea.TeacherAddress, tea.TeacherID);
                 SqlCommand cmd = new SqlCommand(SQL, conn);
                 if (cmd.ExecuteNonQuery() > 0)
                     return true;
@@ -77,7 +77,7 @@ namespace SchoolManagement.DAO
         }
         public DataTable SearchTeacher(string searchType, string value)
         {
-            string SQL = string.Format("select * from Teacher where {0} like '{1}'", searchType, value);
+            string SQL = string.Format("SELECT Teacher.IdTeacher, Teacher.NameTeacher, Teacher.GenderTeacher, Teacher.BirthdayTeacher, Teacher.IdSubjects, Subjects.NameSubjects, Teacher.PhoneTeacher, Teacher.SalaryTeacher, Teacher.AddressTeacher From Teacher, Subjects Where Teacher.IdSubjects = Subjects.IdSubjects and {0} = '{1}'", searchType, value);
             SqlCommand cmd = new SqlCommand(SQL, conn);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataTable table = new DataTable();

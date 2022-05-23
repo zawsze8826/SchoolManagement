@@ -30,35 +30,22 @@ namespace SchoolManagement.GUI
 
         private void btnUpdateTC_Click(object sender, EventArgs e)
         {
-            giaoVienDTO tea = new giaoVienDTO(txtMaGV.Text, txtTen.Text, cbbGT.Text, dtpNgaySinh.Text, txtTenMon.Text, txtSDT.Text, txtLuong.Text, txtDiaChi.Text);
+            giaoVienDTO tea = new giaoVienDTO(txtMaGV.Text, txtTen.Text, cbbGT.Text, dtpNgaySinh.Text, txtMaMon.Text, txtSDT.Text, txtLuong.Text, txtDiaChi.Text);
             busTeacher.UpdateTeacher(tea);
             dGV.DataSource = busTeacher.LoadData();
         }
 
-        private void dGV_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            int i;
-            i = dGV.CurrentRow.Index;
-            txtMaGV.Text = dGV.Rows[i].Cells[0].Value.ToString();
-            txtTen.Text = dGV.Rows[i].Cells[1].Value.ToString();
-            cbbGT.Text = dGV.Rows[i].Cells[2].Value.ToString();
-            dtpNgaySinh.Text = dGV.Rows[i].Cells[3].Value.ToString();
-            txtTenMon.Text = dGV.Rows[i].Cells[4].Value.ToString();
-            txtSDT.Text = dGV.Rows[i].Cells[5].Value.ToString();
-            txtLuong.Text = dGV.Rows[i].Cells[6].Value.ToString();
-            txtDiaChi.Text = dGV.Rows[i].Cells[7].Value.ToString();
-        }
 
         private void btnAddTC_Click(object sender, EventArgs e)
         {
-            giaoVienDTO tea = new giaoVienDTO(txtMaGV.Text, txtTen.Text, cbbGT.Text, dtpNgaySinh.Text, txtTenMon.Text, txtSDT.Text, txtLuong.Text, txtDiaChi.Text);
+            giaoVienDTO tea = new giaoVienDTO(txtMaGV.Text, txtTen.Text, cbbGT.Text, dtpNgaySinh.Text, txtMaMon.Text, txtSDT.Text, txtLuong.Text, txtDiaChi.Text);
             busTeacher.AddTeacher(tea);
             dGV.DataSource = busTeacher.LoadData();
         }
 
         private void btnDeleteTC_Click(object sender, EventArgs e)
         {
-            giaoVienDTO tea = new giaoVienDTO(txtMaGV.Text, txtTen.Text, cbbGT.Text, dtpNgaySinh.Text, txtTenMon.Text, txtSDT.Text, txtLuong.Text, txtDiaChi.Text);
+            giaoVienDTO tea = new giaoVienDTO(txtMaGV.Text, txtTen.Text, cbbGT.Text, dtpNgaySinh.Text, txtMaMon.Text, txtSDT.Text, txtLuong.Text, txtDiaChi.Text);
             busTeacher.DeleteTeacher(tea);
             dGV.DataSource = busTeacher.LoadData();
         }
@@ -68,8 +55,24 @@ namespace SchoolManagement.GUI
             string searchType;
             if (cboSearchType.Text == "Mã Giáo Viên") searchType = "IdTeacher";
             else if (cboSearchType.Text == "Tên") searchType = "NameTeacher";
+            else if (cboSearchType.Text == "Tên Môn") searchType = "Subjects.NameSubjects";
             else searchType = "PhoneTeacher";
             dGV.DataSource = busTeacher.SearchTeacher(searchType, txtTimKiem.Text);
+        }
+
+        private void dGV_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int i;
+            i = dGV.CurrentRow.Index;
+            txtMaGV.Text = dGV.Rows[i].Cells[0].Value.ToString();
+            txtTen.Text = dGV.Rows[i].Cells[1].Value.ToString();
+            cbbGT.Text = dGV.Rows[i].Cells[2].Value.ToString();
+            dtpNgaySinh.Text = dGV.Rows[i].Cells[3].Value.ToString();
+            txtMaMon.Text = dGV.Rows[i].Cells[4].Value.ToString();
+            txtTenMon.Text = dGV.Rows[i].Cells[5].Value.ToString();
+            txtSDT.Text = dGV.Rows[i].Cells[6].Value.ToString();
+            txtLuong.Text = dGV.Rows[i].Cells[7].Value.ToString();
+            txtDiaChi.Text = dGV.Rows[i].Cells[8].Value.ToString();
         }
     }
 }

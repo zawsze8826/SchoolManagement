@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(uCGiaoVien));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cboSearchType = new System.Windows.Forms.ComboBox();
             this.btnTimKiem = new System.Windows.Forms.Button();
             this.txtTimKiem = new System.Windows.Forms.TextBox();
             this.mnsIDU = new System.Windows.Forms.MenuStrip();
@@ -38,6 +39,8 @@
             this.btnDeleteTC = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmRefreshTC = new System.Windows.Forms.ToolStripMenuItem();
             this.grbThongTinGiaoVien = new System.Windows.Forms.GroupBox();
+            this.txtMaMon = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.txtTenMon = new System.Windows.Forms.TextBox();
             this.txtMaGV = new System.Windows.Forms.TextBox();
             this.cbbGT = new System.Windows.Forms.ComboBox();
@@ -56,7 +59,6 @@
             this.lblMaHS = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.dGV = new System.Windows.Forms.DataGridView();
-            this.cboSearchType = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.mnsIDU.SuspendLayout();
             this.grbThongTinGiaoVien.SuspendLayout();
@@ -76,6 +78,19 @@
             this.groupBox1.TabIndex = 14;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Tìm kiếm";
+            // 
+            // cboSearchType
+            // 
+            this.cboSearchType.FormattingEnabled = true;
+            this.cboSearchType.Items.AddRange(new object[] {
+            "Mã Giáo Viên",
+            "Tên",
+            "Số Điện Thoại",
+            "Tên Môn"});
+            this.cboSearchType.Location = new System.Drawing.Point(6, 15);
+            this.cboSearchType.Name = "cboSearchType";
+            this.cboSearchType.Size = new System.Drawing.Size(121, 23);
+            this.cboSearchType.TabIndex = 4;
             // 
             // btnTimKiem
             // 
@@ -162,7 +177,9 @@
             // 
             // grbThongTinGiaoVien
             // 
-            this.grbThongTinGiaoVien.BackColor = System.Drawing.Color.Transparent;
+            this.grbThongTinGiaoVien.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.grbThongTinGiaoVien.Controls.Add(this.txtMaMon);
+            this.grbThongTinGiaoVien.Controls.Add(this.label2);
             this.grbThongTinGiaoVien.Controls.Add(this.txtTenMon);
             this.grbThongTinGiaoVien.Controls.Add(this.txtMaGV);
             this.grbThongTinGiaoVien.Controls.Add(this.cbbGT);
@@ -187,17 +204,36 @@
             this.grbThongTinGiaoVien.TabStop = false;
             this.grbThongTinGiaoVien.Text = "Thông tin giáo viên";
             // 
+            // txtMaMon
+            // 
+            this.txtMaMon.Location = new System.Drawing.Point(370, 18);
+            this.txtMaMon.Name = "txtMaMon";
+            this.txtMaMon.Size = new System.Drawing.Size(61, 22);
+            this.txtMaMon.TabIndex = 26;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(310, 22);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(51, 15);
+            this.label2.TabIndex = 25;
+            this.label2.Text = "Mã Môn";
+            // 
             // txtTenMon
             // 
-            this.txtTenMon.Location = new System.Drawing.Point(370, 16);
+            this.txtTenMon.Location = new System.Drawing.Point(503, 18);
             this.txtTenMon.Name = "txtTenMon";
-            this.txtTenMon.Size = new System.Drawing.Size(200, 22);
+            this.txtTenMon.ReadOnly = true;
+            this.txtTenMon.Size = new System.Drawing.Size(115, 22);
             this.txtTenMon.TabIndex = 24;
             // 
             // txtMaGV
             // 
             this.txtMaGV.Location = new System.Drawing.Point(81, 19);
             this.txtMaGV.Name = "txtMaGV";
+            this.txtMaGV.ReadOnly = true;
             this.txtMaGV.Size = new System.Drawing.Size(200, 22);
             this.txtMaGV.TabIndex = 23;
             // 
@@ -259,7 +295,7 @@
             // 
             this.lblTenMon.AutoSize = true;
             this.lblTenMon.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTenMon.Location = new System.Drawing.Point(310, 20);
+            this.lblTenMon.Location = new System.Drawing.Point(437, 23);
             this.lblTenMon.Name = "lblTenMon";
             this.lblTenMon.Size = new System.Drawing.Size(54, 15);
             this.lblTenMon.TabIndex = 8;
@@ -345,25 +381,14 @@
             // 
             // dGV
             // 
+            this.dGV.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dGV.Location = new System.Drawing.Point(3, 258);
             this.dGV.Name = "dGV";
             this.dGV.RowHeadersWidth = 51;
             this.dGV.Size = new System.Drawing.Size(1001, 240);
             this.dGV.TabIndex = 15;
-            this.dGV.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGV_CellContentClick);
-            // 
-            // cboSearchType
-            // 
-            this.cboSearchType.FormattingEnabled = true;
-            this.cboSearchType.Items.AddRange(new object[] {
-            "Mã Giáo Viên",
-            "Tên",
-            "Số Điện Thoại"});
-            this.cboSearchType.Location = new System.Drawing.Point(6, 15);
-            this.cboSearchType.Name = "cboSearchType";
-            this.cboSearchType.Size = new System.Drawing.Size(121, 23);
-            this.cboSearchType.TabIndex = 4;
+            this.dGV.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGV_CellClick);
             // 
             // uCGiaoVien
             // 
@@ -418,5 +443,7 @@
         private System.Windows.Forms.TextBox txtMaGV;
         private System.Windows.Forms.TextBox txtTenMon;
         private System.Windows.Forms.ComboBox cboSearchType;
+        private System.Windows.Forms.TextBox txtMaMon;
+        private System.Windows.Forms.Label label2;
     }
 }

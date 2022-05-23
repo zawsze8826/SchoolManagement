@@ -19,10 +19,9 @@ namespace SchoolManagement.GUI
         {
             InitializeComponent();
             dGV.DataSource = busThoiKhoaBieu.LoadData();
-
             cboClass.DataSource = busThoiKhoaBieu.LoadClass();
             cboClass.DisplayMember = "CLass";
-            cboClass.ValueMember = "IdClass";
+            cboClass.ValueMember = "Class";
         }
 
         private void cboClass_SelectedIndexChanged(object sender, EventArgs e)

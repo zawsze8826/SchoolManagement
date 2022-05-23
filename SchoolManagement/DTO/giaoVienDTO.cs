@@ -12,7 +12,7 @@ namespace SchoolManagement.DTO
         private string teacherName;
         private string teacherGender;
         private string teacherBirthday;
-        private string subject;
+        private string idSubject;
         private string phoneNum;
         private string salary;
         private string teacherAddress;
@@ -23,7 +23,7 @@ namespace SchoolManagement.DTO
             TeacherName = teacherName;
             TeacherGender = teacherGender;
             TeacherBirthday = teacherBirthday;
-            Subject = subject;
+            IdSubject = subject;
             PhoneNum = phoneNum;
             Salary = salary;
             TeacherAddress = teacherAddress;
@@ -33,7 +33,7 @@ namespace SchoolManagement.DTO
         public string TeacherName { get => teacherName; set => teacherName = value; }
         public string TeacherGender { get => teacherGender; set => teacherGender = value; }
         public string TeacherBirthday { get => teacherBirthday; set => teacherBirthday = value; }
-        public string Subject { get => subject; set => subject = value; }
+        public string IdSubject { get => idSubject; set => idSubject = value; }
         public string PhoneNum { get => phoneNum; set => phoneNum = value; }
         public string Salary { get => salary; set => salary = value; }
         public string TeacherAddress { get => teacherAddress; set => teacherAddress = value; }
