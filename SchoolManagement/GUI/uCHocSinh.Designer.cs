@@ -280,7 +280,7 @@
             this.cboTimkiem.Items.AddRange(new object[] {
             "Mã Học Sinh",
             "Tên Học Sinh",
-            "Mã Lớp",
+            "Lớp",
             "Dân Tộc",
             "Tôn Giáo"});
             this.cboTimkiem.Location = new System.Drawing.Point(691, 195);

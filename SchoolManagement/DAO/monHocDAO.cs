@@ -23,7 +23,7 @@ namespace SchoolManagement.DAO
             try
             {
                 conn.Open();
-                string SQL = string.Format("insert into Subjects(NameSubjects) values (N'{1}')",mon.NameSubjects);
+                string SQL = string.Format("insert into Subjects(NameSubjects) values (N'{0}')",mon.NameSubjects);
                 SqlCommand cmd = new SqlCommand(SQL, conn);
                 if (cmd.ExecuteNonQuery() > 0)
                     return true;

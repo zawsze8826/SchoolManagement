@@ -52,7 +52,7 @@ namespace SchoolManagement.GUI
             string searchType;
             if (cboTimkiem.Text == "Mã Học Sinh") searchType = "IdStudent";
             else if (cboTimkiem.Text == "Tên Học Sinh") searchType = "NameStudent";
-            else if (cboTimkiem.Text == "Mã Lớp") searchType = "Student.IdClass";
+            else if (cboTimkiem.Text == "Lớp") searchType = "Student.CLass";
             else if (cboTimkiem.Text == "Dân Tộc") searchType = "FolkStudent";
             else searchType = "AddressStudent";
             dGV.DataSource =  busStudent.SearchStudent(searchType, txtTimKiem.Text);
