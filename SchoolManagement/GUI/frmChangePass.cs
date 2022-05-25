@@ -15,47 +15,29 @@ namespace SchoolManagement.GUI
 {
     public partial class frmChangePass : Form
     {
-        taiKhoanGVBUS busTaiKhoanGV = new taiKhoanGVBUS();
+        procBUS proc = new procBUS();
         public frmChangePass()
         {
             InitializeComponent();
         }
-
         private void tbnChange_Click(object sender, EventArgs e)
         {
-            SqlConnection conn = new SqlConnection("Data Source=DESKTOP-8G9CDET;Initial Catalog=HighSchool;Integrated Security=True");
-            try
+            if (txtNew.Text == txtRe.Text)
             {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand();
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "SP_ChangePass";
-                cmd.Parameters.AddWithValue("@UserName", uCTaiKhoanGV.username);
-                cmd.Parameters.AddWithValue("@OldPassword", txtOld.Text);
-                cmd.Parameters.AddWithValue("@NewPassword", txtNew.Text);
-                cmd.Connection = conn;
-                if (txtNew.Text == txtRe.Text)
+                int code = proc.ChangePass(uCTaiKhoanGV.username, txtOld.Text, txtNew.Text);
+                if (code == 0)
                 {
-                    object kq = cmd.ExecuteScalar();
-                    int code = Convert.ToInt32(kq);
-                    if (code == 0)
-                    {
-                        MessageBox.Show("Đổi mật khẩu thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        this.Close();
-                    }
-                    else if (code == 1)
-                    {
-                        MessageBox.Show("Mật khẩu cũ không đúng!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
+                    MessageBox.Show("Đổi mật khẩu thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Close();
                 }
-                else
+                else if (code == 1)
                 {
-                    MessageBox.Show("Xác nhận mật khẩu không đúng!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Mật khẩu cũ không đúng!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Xác nhận mật khẩu không đúng!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
     }

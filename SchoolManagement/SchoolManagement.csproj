@@ -67,6 +67,7 @@
     <Compile Include="BUS\hocSinhBUS.cs" />
     <Compile Include="BUS\lopBUS.cs" />
     <Compile Include="BUS\monHocBUS.cs" />
+    <Compile Include="BUS\procBUS.cs" />
     <Compile Include="BUS\taiKhoanBUS.cs" />
     <Compile Include="BUS\taiKhoanGVBUS.cs" />
     <Compile Include="BUS\thoiKhoaBieuBUS.cs" />
@@ -77,6 +78,7 @@
     <Compile Include="DAO\hocSinhDAO.cs" />
     <Compile Include="DAO\lopDAO.cs" />
     <Compile Include="DAO\monHocDAO.cs" />
+    <Compile Include="DAO\procDAO.cs" />
     <Compile Include="DAO\taiKhoanDAO.cs" />
     <Compile Include="DAO\taiKhoanGVDAO.cs" />
     <Compile Include="DAO\thoiKhoaBieuDAO.cs" />
